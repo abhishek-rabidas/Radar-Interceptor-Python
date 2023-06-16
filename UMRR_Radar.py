@@ -1,7 +1,7 @@
-class Radar:
+from Radar import Radar
 
-    def __init__(self):
-        pass
+
+class UmrrRadar(Radar):
 
     def connect(self):
         pass
