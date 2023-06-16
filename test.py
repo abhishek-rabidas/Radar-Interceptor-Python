@@ -1,6 +1,6 @@
-from UMRR.UMRR_Radar import UMRR_Radar
+from API.Fetcher import Fetcher
 
 if __name__ == '__main__':
-    r = UMRR_Radar()
-    r.connect()
+    obj = Fetcher()
+    obj.get_object_detection(5)
 
