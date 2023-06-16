@@ -2,10 +2,13 @@ import struct
 
 from UMRR.Communication.MessageClasses import ObjectDetection, ObjectStatusMessage, StatusMessage
 
-OBJECT_DETECTION_BUFFER = []
+
 
 
 class DataCommunication:
+
+    def __init__(self):
+        self.OBJECT_DETECTION_BUFFER = []
 
     def parse_status_message(self, payload):
         status_message = StatusMessage()
@@ -44,10 +47,10 @@ class DataCommunication:
         object_detection.Length = float(oll) * 0.2
 
         # caching object detection output
-        if len(OBJECT_DETECTION_BUFFER) > 10:
-            OBJECT_DETECTION_BUFFER.clear()
+        if len(self.OBJECT_DETECTION_BUFFER) > 10:
+            self.OBJECT_DETECTION_BUFFER.clear()
         else:
-            OBJECT_DETECTION_BUFFER.append(object_detection)
+            self.OBJECT_DETECTION_BUFFER.append(object_detection)
 
         return object_detection.__str__()
 

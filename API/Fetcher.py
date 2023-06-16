@@ -1,16 +1,16 @@
-from UMRR.Communication import OBJECT_DETECTION_BUFFER
 from UMRR import UMRR_Radar
 
 
 class Fetcher:
 
     def __init__(self):
-        umrr = UMRR_Radar()
-        umrr.connect()
+        self.umrr = UMRR_Radar()
+        self.umrr.connect()
+        self.buffer = self.umrr.parser.OBJECT_DETECTION_BUFFER
         return
 
     def get_object_detection(self, size):
-        if len(OBJECT_DETECTION_BUFFER) >= size:
-            return OBJECT_DETECTION_BUFFER[:size]
+        if len(self.buffer) >= size:
+            return self.buffer[:size]
         else:
-            return OBJECT_DETECTION_BUFFER
+            return self.buffer
