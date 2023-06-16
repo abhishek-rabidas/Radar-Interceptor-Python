@@ -14,7 +14,13 @@ class DataCommunication:
 
     def parse_object_status_message(self, payload):
         object_status_message = ObjectStatusMessage()
-
+        object_status_message.num_objects = payload[0]
+        object_status_message.num_msgs = payload[1]
+        object_status_message.cycle_duration = payload[2]
+        object_status_message.cycle_count = struct.unpack("<I", payload[4:8])[0]
+        # TODO: return __str__()
+        print(
+            f"OBJ MSG>CC: [{object_status_message.cycle_count}], dur: [{object_status_message.cycle_duration}], numObjects: [{object_status_message.num_objects}], numMsgs: [{object_status_message.num_msgs}]")
 
     def parse_object_data(self, payload, timestamp):
         object_detection = ObjectDetection()
@@ -42,3 +48,6 @@ class DataCommunication:
             self.object_detection_buffer.append(object_detection)
 
         return object_detection.__str__()
+
+    def parse_sync_message(self, payload):
+        pass

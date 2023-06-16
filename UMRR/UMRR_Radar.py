@@ -3,6 +3,7 @@ import struct
 
 from Config.Config import Config
 from Radar import Radar
+from UMRR.Communication.DataCommunication import DataCommunication
 
 
 def _reverse(payload):
@@ -13,9 +14,11 @@ class UMRR_Radar(Radar):
 
     def __init__(self):
         super().__init__()
+        self.logging_status = None
         self.is_connected = None
         self.START = bytes([0xca, 0xcb, 0xcc, 0xcd])
         self.END = bytes([0xea, 0xeb, 0xec, 0xed])
+        self.parser = DataCommunication()
 
     def connect(self):
         config = Config().load_config()
@@ -79,16 +82,13 @@ class UMRR_Radar(Radar):
             if idx >= packet_size - 1:
                 break
             payload = _reverse(payload)
-            # if msg_type == 0x0500:
-            #     time_stamp = handle_status_message(payload)
-            # elif msg_type == 0x0501:
-            #     handle_object_message(payload)
-            # elif msg_type == 0x02ff:
-            #     handle_sync_message(payload)
-            # elif 0x0502 <= msg_type <= 0x057F:
-            #     if self.logging_status:
-            #         self.logger.write_object_detection_data(handle_detection_message(payload, time_stamp))
-            #     else:
-            #         print(handle_detection_message(payload, time_stamp))
-            # else:
-            #     print(f"Unknown type: 0x{msg_type:X}")
+            if msg_type == 0x0500:
+                time_stamp = self.parser.parse_status_message(payload).timestamp
+            elif msg_type == 0x0501:
+                self.parser.parse_object_status_message(payload)
+            elif msg_type == 0x02ff:
+                self.parser.parse_sync_message(payload)
+            elif 0x0502 <= msg_type <= 0x057F:
+                print(self.parser.parse_object_data(payload, time_stamp))
+            else:
+                print(f"Unknown type: 0x{msg_type:X}")
