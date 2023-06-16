@@ -1,3 +1,4 @@
+# interface
 class Radar:
 
     def __init__(self):
@@ -6,8 +7,11 @@ class Radar:
     def connect(self):
         pass
 
-    def pre_process_stream(self):
+    def read_data(self, connection):
         pass
 
-    def packet_handler(self):
+    def pre_process_stream(self, stream):
+        pass
+
+    def packet_handler(self, packet):
         pass
