@@ -1,5 +1,5 @@
-from UMRR.Communication.DataCommunication import OBJECT_DETECTION_BUFFER
-from UMRR.UMRR_Radar import UMRR_Radar
+from UMRR.Communication import OBJECT_DETECTION_BUFFER
+from UMRR import UMRR_Radar
 
 
 class Fetcher:

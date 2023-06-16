@@ -1,9 +1,9 @@
 import socket
 import struct
 
-from Config.Config import Config
+from Config import Config
 from Radar import Radar
-from UMRR.Communication.DataCommunication import DataCommunication
+from UMRR.Communication import DataCommunication
 
 
 def _reverse(payload):

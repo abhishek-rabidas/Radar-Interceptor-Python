@@ -1,4 +1,4 @@
-from API.Fetcher import Fetcher
+from API import Fetcher
 
 if __name__ == '__main__':
     obj = Fetcher()
