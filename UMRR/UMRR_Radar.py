@@ -1,7 +1,7 @@
 import socket
 import struct
 
-from Config import Config
+from Config.Config import Config
 from Radar import Radar
 
 
@@ -19,6 +19,7 @@ class UMRR_Radar(Radar):
 
     def connect(self):
         config = Config().load_config()
+
         address = config.IP, config.Port
 
         print(f"-----Connecting to [{address}]-----")

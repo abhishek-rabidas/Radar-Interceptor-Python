@@ -9,7 +9,7 @@ class Config:
         self.PrintLog = None
 
     def load_config(self):
-        config_file_path = "./config.json"
+        config_file_path = "Config/config.json"
 
         try:
             with open(config_file_path, "r") as config_file:
