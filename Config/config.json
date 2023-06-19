@@ -1,6 +1,6 @@
 {
   "Radar_IP" : "127.0.0.1",
-  "Port" : "55555",
+  "Port" : "1234",
   "Output_Directory" : "./output",
   "PrintLog": false
 }

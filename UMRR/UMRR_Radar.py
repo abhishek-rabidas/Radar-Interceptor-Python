@@ -27,6 +27,7 @@ class UMRR_Radar(Radar):
 
         print(f"-----Connecting to [{address}]-----")
         connection = socket.create_connection(address)
+        print(f"-----Connected to [{address}]-----")
         self.is_connected = True
         self.read_data(connection)
 
